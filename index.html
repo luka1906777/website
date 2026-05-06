@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dimsumin | თბილისი</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;600;700&family=Noto+Sans+Georgian:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #c9a84c;
+      --dark: #1a1a1a;
+      --darker: #111;
+      --light: #f5f0e8;
+      --text: #333;
+      --muted: #888;
+    }
+
+    body {
+      font-family: 'Noto Sans Georgian', sans-serif;
+      background: var(--dark);
+      color: #fff;
+    }
+
+    h1, h2, .nav-logo, .footer-logo {
+      font-family: 'Noto Serif Georgian', serif;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #1a0a00 0%, #2d1500 40%, #1a1a1a 100%);
+      overflow: hidden;
+      padding: 0 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.15) 0%, transparent 70%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 2px 40px rgba(201,168,76,0.3);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .stars { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; }
+
+    .rating-num {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .rating-count { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+    }
+
+    .btn {
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      font-family: inherit;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--darker);
+      font-weight: 700;
+    }
+
+    .btn-primary:hover { background: #e0bc60; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine { 0%,100% { opacity: 0.3; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.2); } }
+
+    /* ── INFO STRIP ── */
+    .info-strip {
+      background: var(--gold);
+      color: var(--darker);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 36px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-right: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .info-item:last-child { border-right: none; }
+    .info-item .icon { font-size: 1.2rem; }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 20px; }
+
+    .section-label {
+      text-align: center;
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 16px auto 60px;
+    }
+
+    /* ── FEATURES ── */
+    .features { background: var(--darker); }
+
+    .features-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 40px 20px;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover { border-color: var(--gold); transform: translateY(-4px); background: rgba(201,168,76,0.05); }
+
+    .feature-icon { font-size: 2.5rem; margin-bottom: 20px; }
+
+    .feature-title {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .feature-desc { color: rgba(255,255,255,0.5); font-size: 0.95rem; line-height: 1.7; }
+
+    /* ── MENU HIGHLIGHT ── */
+    .menu-section { background: #161616; }
+
+    .menu-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .menu-card:hover { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.05); }
+
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .menu-card:hover::before { transform: scaleX(1); }
+
+    .menu-category {
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .menu-item-name {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-family: 'Noto Serif Georgian', serif;
+    }
+
+    .menu-item-desc {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .menu-price {
+      color: var(--gold);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    /* ── PRICE / VALUE ── */
+    .value-section { background: var(--darker); }
+
+    .value-center {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .price-display {
+      font-size: clamp(3rem, 8vw, 5rem);
+      color: var(--gold);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 12px;
+      font-family: 'Noto Serif Georgian', serif;
+      font-weight: 700;
+    }
+
+    .price-note { color: rgba(255,255,255,0.5); font-size: 0.95rem; margin-bottom: 40px; }
+
+    /* ── REVIEWS ── */
+    .reviews-section { background: #161616; }
+
+    .reviews-summary {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .big-rating {
+      font-size: 6rem;
+      color: var(--gold);
+      line-height: 1;
+      font-weight: 700;
+      font-family: 'Noto Serif Georgian', serif;
+    }
+
+    .big-stars { font-size: 2rem; color: var(--gold); letter-spacing: 4px; margin: 12px 0; }
+
+    .review-count { color: rgba(255,255,255,0.5); }
+
+    .review-cards {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 28px;
+    }
+
+    .review-stars { color: var(--gold); margin-bottom: 14px; font-size: 0.95rem; }
+    .review-text { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.8; font-style: italic; margin-bottom: 16px; }
+    .review-author { color: rgba(255,255,255,0.35); font-size: 0.85rem; letter-spacing: 0.5px; }
+
+    /* ── VISIT ── */
+    .visit-section { background: var(--darker); }
+
+    .visit-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+    }
+
+    .visit-block h3 {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      font-weight: 700;
+    }
+
+    .visit-block p, .visit-block a {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.9;
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .visit-block a:hover { color: var(--gold); }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .open-badge {
+      display: inline-block;
+      background: rgba(76, 175, 80, 0.2);
+      color: #81c784;
+      border: 1px solid rgba(76, 175, 80, 0.4);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    /* ── ORDER CTA ── */
+    .order-section {
+      background: linear-gradient(135deg, #1a0a00, #2d1500 50%, #1a0a00);
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .order-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 70%);
+    }
+
+    .order-section > * { position: relative; }
+
+    .order-section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .order-section p {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 40px;
+      font-size: 1.05rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0d0d0d;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    footer p { color: rgba(255,255,255,0.35); font-size: 0.85rem; letter-spacing: 0.5px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+      transition: background 0.3s;
+    }
+
+    nav.scrolled { background: rgba(17,17,17,0.97); border-bottom: 1px solid rgba(201,168,76,0.15); }
+
+    .nav-logo {
+      color: var(--gold);
+      font-size: 1.3rem;
+      letter-spacing: 3px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .info-item { padding: 14px 18px; font-size: 0.8rem; }
+      section { padding: 70px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">Dimsumin</a>
+    <ul class="nav-links">
+      <li><a href="#menu">მენიუ</a></li>
+      <li><a href="#reviews">შეფასებები</a></li>
+      <li><a href="#visit">გვეწვიეთ</a></li>
+      <li><a href="https://wolt.com" target="_blank">შეკვეთა</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">⭐ 4.3 · თბილისის საუკეთესო</div>
+    <h1>Dim<span>sumin</span></h1>
+    <p class="hero-sub">ვაჟა-ფშაველას გამზირი · თბილისი</p>
+    <div class="hero-rating">
+      <span class="stars">★★★★☆</span>
+      <span class="rating-num">4.3</span>
+      <span class="rating-count">(256 შეფასება)</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://wolt.com" target="_blank" class="btn btn-primary">შეუკვეთე ახლავე</a>
+      <a href="#visit" class="btn btn-outline">მოგვძებნე</a>
+    </div>
+    <div class="scroll-hint">გადახედე</div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <div class="info-strip">
+    <div class="info-item"><span class="icon">🍽️</span> ადგილზე მირთმევა</div>
+    <div class="info-item"><span class="icon">📦</span> წასაღები</div>
+    <div class="info-item"><span class="icon">🛵</span> უკონტაქტო მიწოდება</div>
+    <div class="info-item"><span class="icon">💰</span> 20–30 ₾ ერთ პერსონაზე</div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="about">
+    <p class="section-label">რატომ ჩვენ</p>
+    <h2 class="section-title">დასამახსოვრებელი გასტრონომიული გამოცდილება</h2>
+    <div class="section-divider"></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🥘</div>
+        <div class="feature-title">ავთენტური სამზარეულო</div>
+        <p class="feature-desc">აზიური და ქართული გემოები, მომზადებული სიყვარულით და ხარისხიანი ინგრედიენტებით.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <div class="feature-title">ახალი ინგრედიენტები</div>
+        <p class="feature-desc">ვიყენებთ მხოლოდ სეზონურ და ხარისხიან პროდუქტს, რათა ყოველი კერძი იყოს სრულყოფილი.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <div class="feature-title">მყუდრო ატმოსფერო</div>
+        <p class="feature-desc">თბილი და მისასალმებელი სივრცე — იდეალური ოჯახური სადილისა თუ რომანტიული საღამოსთვის.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">სწრაფი მიწოდება</div>
+        <p class="feature-desc">შეუკვეთე Wolt-ის საშუალებით და მიიღე გემრიელი კერძები სახლში თბილისის ნებისმიერ წერტილში.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU HIGHLIGHT -->
+  <section class="menu-section" id="menu">
+    <p class="section-label">რას გთავაზობთ</p>
+    <h2 class="section-title">ჩვენი მენიუ</h2>
+    <div class="section-divider"></div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-category">აპერიტივი</div>
+        <div class="menu-item-name">სალათები</div>
+        <p class="menu-item-desc">ახალი სეზონური ბოსტნეული ტრადიციული სოუსებითა და მწვანილით.</p>
+        <div class="menu-price">~ 8–12 ₾</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-category">ძირითადი კერძი</div>
+        <div class="menu-item-name">დიმსამი</div>
+        <p class="menu-item-desc">აზიური ხელნაკეთი დიმსამი — ყოველდღე ახლად მომზადებული, განსხვავებული შიგთავსებით.</p>
+        <div class="menu-price">~ 14–22 ₾</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-category">საფირმო კერძი</div>
+        <div class="menu-item-name">ლაფშა და ბაო</div>
+        <p class="menu-item-desc">ცხელი ლაფშა და ნაზი ბაო-ბანი — აზიური სამზარეულოს კლასიკა, ჩვენებური ხელით.</p>
+        <div class="menu-price">~ 18–28 ₾</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-category">დესერტი</div>
+        <div class="menu-item-name">სეზონური ტკბილეული</div>
+        <p class="menu-item-desc">სასიამოვნო დასასრული თქვენი ვახშმისთვის — დღის სპეციალი დესერტები.</p>
+        <div class="menu-price">~ 6–10 ₾</div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-category">სასმელები</div>
+        <div class="menu-item-name">ღვინო და გამაგრილებელი</div>
+        <p class="menu-item-desc">ქართული ღვინოები, ლიმონათები და სხვა გამაგრილებელი სასმელები კერძთან კომბინაციისთვის.</p>
+        <div class="menu-price">~ 5–15 ₾</div>
+      </div>
+      <div class="menu-card" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+        <div style="color:rgba(255,255,255,0.4);font-size:0.95rem;text-align:center;">სრული მენიუ ხელმისაწვდომია</div>
+        <a href="https://wolt.com" target="_blank" class="btn btn-primary" style="padding:10px 24px;font-size:0.85rem;">ნახე Wolt-ზე</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section class="value-section">
+    <div class="value-center">
+      <p class="section-label">ხელმისაწვდომი ფასები</p>
+      <div class="price-display">20–30 ₾</div>
+      <p class="price-note">საშუალო ფასი ერთ პერსონაზე · 132 სტუმრის შეფასება</p>
+      <p style="color:rgba(255,255,255,0.55);line-height:1.9;font-size:1rem;">გემრიელი რესტორნული სადილი თბილისის გულში — საუკეთესო ხარისხის კერძები სამართლიანი ფასებით, ყოველდღე.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="reviews">
+    <p class="section-label">რას ამბობენ სტუმრები</p>
+    <h2 class="section-title">სტუმრების შეფასებები</h2>
+    <div class="section-divider"></div>
+    <div class="reviews-summary">
+      <div class="big-rating">4.3</div>
+      <div class="big-stars">★★★★☆</div>
+      <p class="review-count">დაფუძნებული 256 Google შეფასებაზე</p>
+    </div>
+    <div class="review-cards">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„გასაოცარი კერძები და თბილი ატმოსფერო. დიმსამი უბრალოდ სრულყოფილია — აუცილებლად დავბრუნდებით!"</p>
+        <p class="review-author">— Google შეფასება</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">„შესანიშნავი ფასი ხარისხის შესაბამისი. პორციები დიდია და მომსახურება — სასიამოვნო. ვაჟა-ფშაველაზე საუკეთესო ადგილია."</p>
+        <p class="review-author">— Google შეფასება</p>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„შევუკვეთე Wolt-ით — მოვიდა ცხელი და ახალი. გემო ნამდვილად ღირდა. სრულად გირჩევთ!"</p>
+        <p class="review-author">— Google შეფასება</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit-section" id="visit">
+    <p class="section-label">გვეწვიეთ</p>
+    <h2 class="section-title">მოგვძებნე და დაგვიკავშირდი</h2>
+    <div class="section-divider"></div>
+    <div class="visit-grid">
+      <div class="visit-block">
+        <h3>მისამართი</h3>
+        <p>ვაჟა-ფშაველას გამზირი</p>
+        <p>თბილისი, საქართველო</p>
+        <br>
+        <a href="https://maps.app.goo.gl/Mq3X8xwQrvET3owc7" target="_blank">📍 გახსენი Google Maps-ში →</a>
+      </div>
+      <div class="visit-block">
+        <h3>სამუშაო საათები</h3>
+        <span class="open-badge">● ახლა ღია</span>
+        <div class="hours-row"><span>ორშ. – კვ.</span><span>22:00 საათამდე</span></div>
+        <br>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.35);">დღესასწაულებზე საათები შეიძლება შეიცვალოს</p>
+      </div>
+      <div class="visit-block">
+        <h3>კონტაქტი და შეკვეთა</h3>
+        <a href="tel:+995568798826">📞 568 79 88 26</a>
+        <a href="https://wolt.com" target="_blank">🛵 შეუკვეთე Wolt-ზე</a>
+        <a href="https://facebook.com" target="_blank">📘 Facebook გვერდი</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER CTA -->
+  <section class="order-section">
+    <h2>მზად ხართ შესაკვეთად?</h2>
+    <p>მიირთვით ადგილზე ან მიიღეთ მიწოდებით — არჩევანი თქვენია.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wolt.com" target="_blank" class="btn btn-primary">შეუკვეთე Wolt-ზე</a>
+      <a href="tel:+995568798826" class="btn btn-outline">დაგვირეკე</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Dimsumin · თბილისი</div>
+    <p>ვაჟა-ფშაველას გამზირი, თბილისი · 568 79 88 26</p>
+    <br>
+    <p>© 2026 · ყველა უფლება დაცულია</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+</body>
+</html>
